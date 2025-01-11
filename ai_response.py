@@ -1,7 +1,11 @@
 import requests
 import json
 import os 
-def send_chat_message(message, user_profile=None, model="openai/gpt-3.5-turbo", api_key=""):
+from dotenv import load_dotenv
+
+load_dotenv()
+
+def send_chat_message(message, user_profile=None, model="openai/gpt-3.5-turbo", api_key=os.getenv("API_KEY")):
    
     url = "https://openrouter.ai/api/v1/chat/completions"
     
