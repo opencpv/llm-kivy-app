@@ -133,3 +133,4 @@ class ChatScreen(Screen):
         
         message_box.add_widget(message)
         self.chat_history.add_widget(message_box)
+

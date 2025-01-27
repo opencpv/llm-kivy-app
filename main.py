@@ -4,10 +4,9 @@ from kivy.uix.button import Button
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.utils import get_color_from_hex, platform
 from kivy.core.window import Window
+from screens.dietician_screen import DieticianScreen
 from screens.profile_screen import ProfileScreen
 from screens.chat_screen import ChatScreen
-import json
-import os
 from ai_response import send_chat_message
 from kivy.uix.label import Label
 from screens.profile_screen import ProfileScreen
@@ -66,12 +65,24 @@ class MainScreen(Screen):
         )
         chat_btn.bind(on_press=self._button_pressed)
         
+        dietician_btn = Button(
+            text='Dietician',
+            size_hint_y=None,
+            height='70dp',
+            background_color=get_color_from_hex('#FFC107'),
+            background_normal='',
+            font_size='18sp',
+            bold=True
+        )
+        dietician_btn.bind(on_press=self._button_pressed)
+        
         # Add widgets
         layout.add_widget(logo)
         layout.add_widget(welcome)
         layout.add_widget(buttons_layout)
         buttons_layout.add_widget(profile_btn)
         buttons_layout.add_widget(chat_btn)
+        buttons_layout.add_widget(dietician_btn)
         self.add_widget(layout)
     
     def _button_pressed(self, instance):
@@ -82,6 +93,8 @@ class MainScreen(Screen):
         Clock.schedule_once(restore_opacity, 0.1)
         if instance.text == 'My Profile':
             self.manager.current = 'profile'
+        elif instance.text == 'Dietician':
+            self.manager.current = 'dietician'
         else:
             self.manager.current = 'chat'
 
@@ -103,6 +116,7 @@ class HealthcareApp(App):
         sm.add_widget(MainScreen(name='main'))
         sm.add_widget(ProfileScreen(name='profile'))
         sm.add_widget(ChatScreen(name='chat'))
+        sm.add_widget(DieticianScreen(name='dietician'))
         
         return sm
 
