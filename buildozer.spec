@@ -450,3 +450,6 @@ warn_on_root = 1
 #    Then, invoke the command line with the "demo" profile:
 #
 #buildozer --profile demo android debug
+
+# (str) Android SDK directory (if empty, it will be automatically downloaded.)
+android.sdk_path = /home/kasuadana/Android/Sdk
